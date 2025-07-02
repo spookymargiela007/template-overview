@@ -1,10 +1,14 @@
 export const siteConfig = {
-  name: "Overview",
-  url: "https://overview.tremor.so",
-  description: "The only reporting and audit dashboard you will ever need.",
+  name: "Google Ads AI Platform",
+  url: "https://ads-ai.google.com",
+  description: "Next-generation AI-powered Google Ads management and optimization platform with intelligent ambient agents.",
   baseLinks: {
-    overview: "/overview",
-    transactions: "/transactions",
+    overview: "/campaigns",
+    campaigns: "/campaigns",
+    audiences: "/audiences",
+    creatives: "/creatives",
+    optimization: "/optimization",
+    agents: "/agents",
     login: "/login",
   },
 }

@@ -4,8 +4,8 @@ import { ThemeProvider } from "next-themes"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "Overview",
-  description: "Dashboard pages to summarize data.",
+  title: "Google Ads AI Platform",
+  description: "Next-generation AI-powered Google Ads management and optimization platform with intelligent ambient agents.",
 }
 
 export default function RootLayout({

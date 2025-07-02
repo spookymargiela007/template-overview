@@ -1,43 +1,62 @@
-import { fakerDE_CH as faker } from "@faker-js/faker"
+import { faker } from "@faker-js/faker"
 import fs from "fs"
 import path from "path"
-import { accounts } from "./schema"
+import { agentTypes, campaignFocusAreas, type Agent } from "./schema"
 
-const agents = Array.from({ length: 102 }, () => {
-  const fullName = `${faker.person.firstName()} ${faker.person.lastName()}`
-  const minutes_booked = faker.number.int({ min: 480, max: 9600 })
-  const startDate = faker.date.between({
-    from: "2015-02-01T00:00:00Z",
-    to: "2024-10-17T00:00:00Z",
-  })
+// Google Ads AI agent names that sound professional and AI-focused
+const aiAgentNames = [
+  "AdOptima Pro", "SmartBid Engine", "CreativeGen AI", "AudienceMax", "KeywordIQ",
+  "BudgetMaster AI", "ConversionBot", "QualityScore+", "SeasonalAI", "CompetitorEye",
+  "LandingOptim", "NegativeGuard", "PerformanceMax AI", "TrendSpotter", "ROI Maximizer",
+  "SmartSchedule", "GeotargetPro", "DeviceOptim", "VideoAI Generator", "ShoppingBot",
+  "LocalSearch AI", "MobileFirst", "VoiceSearch Pro", "RetargetingGenius", "CrossChannel AI"
+]
+
+const accountNames = [
+  "Global Retail Corp", "TechStart Solutions", "Fashion Forward Ltd", "Home & Garden Pro",
+  "Automotive Plus", "Healthcare Partners", "Educational Services", "Financial Advisors Inc",
+  "Travel & Hospitality", "Food & Beverage Co", "Sports Equipment Ltd", "Beauty & Wellness",
+  "Pet Care Solutions", "Electronics Hub", "Real Estate Pro", "Fitness First", "Art & Crafts",
+  "Professional Services", "Entertainment Group", "Green Energy Corp"
+]
+
+function generateAgent(): Agent {
+  const agentType = faker.helpers.arrayElement(agentTypes)
+  const campaignFocus = faker.helpers.arrayElement(campaignFocusAreas)
+  const accountName = faker.helpers.arrayElement(accountNames)
+  const agentName = faker.helpers.arrayElement(aiAgentNames)
+
+  const activationDate = faker.date.between({ from: '2023-01-01', to: '2024-12-01' })
+  const lastActive = faker.datatype.boolean(0.9)
+    ? faker.date.between({ from: activationDate, to: new Date() }).toISOString()
+    : null
 
   return {
-    agent_id: faker.string.alphanumeric(6),
-    full_name: fullName,
-    start_date: startDate.toISOString(),
-    end_date: faker.datatype.boolean({ probability: 0.22 })
-      ? faker.date
-          .between({ from: startDate, to: "2024-10-17T00:00:00Z" })
-          .toISOString()
-      : null,
-    account: faker.helpers.arrayElement(accounts).label,
-    number: faker.phone.number({ style: "international" }),
-    email: `${fullName.charAt(0).toLowerCase()}${fullName
-      .split(" ")[1]
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/[^a-z0-9]/g, "")}@overview.com`,
-    registered: faker.datatype.boolean({ probability: 0.82 }),
-    minutes_called: Math.floor(
-      minutes_booked * faker.number.float({ min: 0.4, max: 0.99 }),
-    ),
-    minutes_booked,
-    ticket_generation: faker.datatype.boolean({ probability: 0.8 }),
+    agent_id: faker.string.uuid(),
+    agent_name: agentName,
+    agent_type: agentType.value,
+    account_name: accountName,
+    activation_date: activationDate.toISOString(),
+    last_active: lastActive,
+    campaign_focus: campaignFocus.value,
+    contact_email: faker.internet.email(),
+    is_active: faker.datatype.boolean(0.85), // 85% active
+    optimizations_made: faker.number.int({ min: 0, max: 500 }),
+    cost_savings: faker.number.int({ min: 0, max: 50000 }),
+    performance_score: faker.number.int({ min: 65, max: 100 }),
+    auto_bidding_enabled: faker.datatype.boolean(0.75), // 75% have auto-bidding
   }
-})
+}
 
-fs.writeFileSync(
-  path.join(__dirname, "agents.ts"),
-  `import { Agent } from "./schema";\nexport const agents: Agent[] = ${JSON.stringify(agents, null, 2)};`,
-)
+function generateAgents(count: number): Agent[] {
+  return Array.from({ length: count }, generateAgent)
+}
+
+const agents = generateAgents(50)
+
+const outputPath = path.join(__dirname, "agents.ts")
+const content = `// This file is auto-generated. Do not edit manually.
+export const agents = ${JSON.stringify(agents, null, 2)} as const`
+
+fs.writeFileSync(outputPath, content)
+console.log(`Generated ${agents.length} Google Ads AI agents`)

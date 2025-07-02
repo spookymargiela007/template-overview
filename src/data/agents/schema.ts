@@ -1,108 +1,105 @@
-import { z } from "zod"
+import { z } from "zod";
 
 export const schemaAgents = z.object({
   agent_id: z.string(),
-  full_name: z.string(),
-  account: z.string(),
-  start_date: z.string(),
-  end_date: z.string().nullable(),
-  number: z.string(),
-  email: z.string(),
-  registered: z.boolean(),
-  minutes_called: z.number(),
-  minutes_booked: z.number(),
-  ticket_generation: z.boolean(),
+  agent_name: z.string(),
+  agent_type: z.string(), // Campaign Optimizer, Bid Manager, Creative Generator, etc.
+  account_name: z.string(),
+  activation_date: z.string(),
+  last_active: z.string().nullable(),
+  campaign_focus: z.string(),
+  contact_email: z.string(),
+  is_active: z.boolean(),
+  optimizations_made: z.number(),
+  cost_savings: z.number(), // in dollars
+  performance_score: z.number(), // 0-100
+  auto_bidding_enabled: z.boolean(),
 })
 
 export type Agent = z.infer<typeof schemaAgents>
 
-export const accounts: { value: string; label: string }[] = [
+export const agentTypes: { value: string; label: string }[] = [
   {
-    value: "auto-insurance",
-    label: "Auto Insurance",
+    value: "campaign-optimizer",
+    label: "Campaign Optimizer",
   },
   {
-    value: "business-liability",
-    label: "Business Liability",
+    value: "bid-manager",
+    label: "Smart Bid Manager",
   },
   {
-    value: "commercial-property",
-    label: "Commercial Property",
+    value: "creative-generator",
+    label: "Creative Generator",
   },
   {
-    value: "cyber-insurance",
-    label: "Cyber Insurance",
+    value: "audience-expander",
+    label: "Audience Expander",
   },
   {
-    value: "dental-coverage",
-    label: "Dental Coverage",
+    value: "keyword-researcher",
+    label: "Keyword Researcher",
   },
   {
-    value: "disability-insurance",
-    label: "Disability Insurance",
+    value: "budget-allocator",
+    label: "Budget Allocator",
   },
   {
-    value: "employee-benefits",
-    label: "Employee Benefits",
+    value: "conversion-tracker",
+    label: "Conversion Tracker",
   },
   {
-    value: "equipment-insurance",
-    label: "Equipment Insurance",
+    value: "quality-score-optimizer",
+    label: "Quality Score Optimizer",
   },
   {
-    value: "fire-insurance",
-    label: "Fire Insurance",
+    value: "seasonal-adjuster",
+    label: "Seasonal Adjuster",
   },
   {
-    value: "flood-insurance",
-    label: "Flood Insurance",
+    value: "competitor-analyst",
+    label: "Competitor Analyst",
   },
   {
-    value: "general-liability",
-    label: "General Liability",
+    value: "landing-page-optimizer",
+    label: "Landing Page Optimizer",
   },
   {
-    value: "health-insurance",
-    label: "Health Insurance",
+    value: "negative-keyword-manager",
+    label: "Negative Keyword Manager",
+  },
+]
+
+export const campaignFocusAreas: { value: string; label: string }[] = [
+  {
+    value: "search-campaigns",
+    label: "Search Campaigns",
   },
   {
-    value: "homeowners-insurance",
-    label: "Homeowners Insurance",
+    value: "display-campaigns",
+    label: "Display Campaigns",
   },
   {
-    value: "life-insurance",
-    label: "Life Insurance",
+    value: "shopping-campaigns",
+    label: "Shopping Campaigns",
   },
   {
-    value: "marine-insurance",
-    label: "Marine Insurance",
+    value: "video-campaigns",
+    label: "Video Campaigns",
   },
   {
-    value: "medical-malpractice",
-    label: "Medical Malpractice",
+    value: "app-campaigns",
+    label: "App Campaigns",
   },
   {
-    value: "pet-insurance",
-    label: "Pet Insurance",
+    value: "smart-campaigns",
+    label: "Smart Campaigns",
   },
   {
-    value: "professional-liability",
-    label: "Professional Liability",
+    value: "performance-max",
+    label: "Performance Max",
   },
   {
-    value: "property-insurance",
-    label: "Property Insurance",
-  },
-  {
-    value: "renters-insurance",
-    label: "Renters Insurance",
-  },
-  {
-    value: "travel-insurance",
-    label: "Travel Insurance",
-  },
-  {
-    value: "vision-coverage",
-    label: "Vision Coverage",
+    value: "local-campaigns",
+    label: "Local Campaigns",
   },
 ]
