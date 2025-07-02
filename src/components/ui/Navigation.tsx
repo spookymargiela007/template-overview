@@ -14,7 +14,7 @@ function Navigation() {
     <div className="shadow-s sticky top-0 z-20 bg-white dark:bg-gray-950">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 pt-3">
         <div>
-          <span className="sr-only">Your Company</span>
+          <span className="sr-only">Google Ads AI Platform</span>
           <Logo className="h-6" />
         </div>
         <div className="flex h-[42px] flex-nowrap gap-1">
@@ -27,30 +27,37 @@ function Navigation() {
           <TabNavigationLink
             className="inline-flex gap-2"
             asChild
-            active={pathname === "/support"}
+            active={pathname === "/campaigns"}
           >
-            <Link href="/support">Support</Link>
+            <Link href="/campaigns">Campaigns</Link>
           </TabNavigationLink>
           <TabNavigationLink
             className="inline-flex gap-2"
             asChild
-            active={pathname === "/retention"}
+            active={pathname === "/audiences"}
           >
-            <Link href="/retention">Retention</Link>
+            <Link href="/audiences">Audiences</Link>
           </TabNavigationLink>
           <TabNavigationLink
             className="inline-flex gap-2"
             asChild
-            active={pathname === "/workflow"}
+            active={pathname === "/creatives"}
           >
-            <Link href="/workflow">Workflow</Link>
+            <Link href="/creatives">Creatives</Link>
+          </TabNavigationLink>
+          <TabNavigationLink
+            className="inline-flex gap-2"
+            asChild
+            active={pathname === "/optimization"}
+          >
+            <Link href="/optimization">Optimization</Link>
           </TabNavigationLink>
           <TabNavigationLink
             className="inline-flex gap-2"
             asChild
             active={pathname === "/agents"}
           >
-            <Link href="/agents">Agents</Link>
+            <Link href="/agents">AI Agents</Link>
           </TabNavigationLink>
         </div>
       </TabNavigation>
