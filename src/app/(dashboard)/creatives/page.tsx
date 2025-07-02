@@ -1,9 +1,6 @@
 import { Badge } from "@/components/Badge"
-import { Button } from "@/components/Button"
 import { Card } from "@/components/Card"
-import { CategoryBar } from "@/components/CategoryBar"
 import { Divider } from "@/components/Divider"
-import { ProgressCircle } from "@/components/ProgressCircle"
 
 export default function CreativesDashboard() {
     return (
@@ -17,14 +14,6 @@ export default function CreativesDashboard() {
                         AI-powered creative generation, testing, and optimization for maximum ad performance
                     </p>
                 </div>
-                <div className="flex gap-2">
-                    <Button variant="secondary" className="flex items-center gap-2 text-base sm:text-sm">
-                        Generate Variations
-                    </Button>
-                    <Button className="flex items-center gap-2 text-base sm:text-sm">
-                        Create Asset
-                    </Button>
-                </div>
             </div>
             <Divider />
 
@@ -37,26 +26,11 @@ export default function CreativesDashboard() {
                     <dd className="mt-1 text-3xl font-semibold text-gray-900 dark:text-gray-50">
                         89
                     </dd>
-                    <CategoryBar
-                        values={[65, 25, 10]}
-                        className="mt-4"
-                        colors={["emerald", "amber", "red"]}
-                        showLabels={false}
-                    />
-                    <ul className="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-xs">
-                        <li className="flex items-center gap-1">
-                            <span className="size-2 shrink-0 rounded-sm bg-emerald-500" />
-                            <span>High performing 65%</span>
-                        </li>
-                        <li className="flex items-center gap-1">
-                            <span className="size-2 shrink-0 rounded-sm bg-amber-500" />
-                            <span>Testing 25%</span>
-                        </li>
-                        <li className="flex items-center gap-1">
-                            <span className="size-2 shrink-0 rounded-sm bg-red-500" />
-                            <span>Low performing 10%</span>
-                        </li>
-                    </ul>
+                    <div className="mt-4">
+                        <Badge variant="success">
+                            65% high performing
+                        </Badge>
+                    </div>
                 </Card>
 
                 <Card>
@@ -77,20 +51,13 @@ export default function CreativesDashboard() {
                     <dt className="text-sm font-medium text-gray-900 dark:text-gray-50">
                         Creative Testing Score
                     </dt>
-                    <div className="mt-4 flex flex-nowrap items-center justify-between gap-y-4">
-                        <dd className="space-y-3">
-                            <div>
-                                <span className="mt-1 block text-2xl font-semibold text-gray-900 dark:text-gray-50">
-                                    8.7/10
-                                </span>
-                                <div className="flex items-center gap-2 mt-1">
-                                    <Badge variant="success">
-                                        Excellent
-                                    </Badge>
-                                </div>
-                            </div>
-                        </dd>
-                        <ProgressCircle value={87} radius={45} strokeWidth={7} variant="success" />
+                    <dd className="mt-1 text-3xl font-semibold text-gray-900 dark:text-gray-50">
+                        8.7/10
+                    </dd>
+                    <div className="mt-4">
+                        <Badge variant="success">
+                            Excellent
+                        </Badge>
                     </div>
                 </Card>
 
@@ -110,58 +77,73 @@ export default function CreativesDashboard() {
             </dl>
 
             {/* Creative Types Performance */}
-            <div className="mt-12">
+            <div className="mt-8">
                 <Card>
-                    <div className="mb-6">
-                        <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">
-                            Creative Asset Performance by Type
-                        </h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-500">
-                            Performance breakdown across different creative formats
-                        </p>
-                    </div>
+                    <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50 mb-4">
+                        Creative Asset Performance by Type
+                    </h3>
+                    <p className="text-gray-500 dark:text-gray-500 mb-6">
+                        Performance breakdown across different creative formats
+                    </p>
 
                     <div className="space-y-6">
-                        {[
-                            { type: "Responsive Search Ads", count: 34, ctr: "12.4%", convRate: "8.9%", status: "Optimizing" },
-                            { type: "Display Images", count: 28, ctr: "6.7%", convRate: "4.2%", status: "Active" },
-                            { type: "Video Assets", count: 15, ctr: "9.1%", convRate: "7.8%", status: "Active" },
-                            { type: "Shopping Images", count: 12, ctr: "8.3%", convRate: "12.1%", status: "High Performing" },
-                        ].map((creative, idx) => (
-                            <div key={idx} className="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
-                                <div className="flex-1">
-                                    <div className="flex items-center gap-3">
-                                        <h4 className="font-medium text-gray-900 dark:text-gray-50">{creative.type}</h4>
-                                        <Badge variant={
-                                            creative.status === "High Performing" ? "success" :
-                                                creative.status === "Optimizing" ? "warning" : "neutral"
-                                        }>
-                                            {creative.status}
-                                        </Badge>
-                                    </div>
-                                    <p className="text-sm text-gray-500 mt-1">{creative.count} active assets</p>
+                        <div className="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
+                            <div className="flex-1">
+                                <div className="flex items-center gap-3">
+                                    <h4 className="font-medium text-gray-900 dark:text-gray-50">Responsive Search Ads</h4>
+                                    <Badge variant="warning">Optimizing</Badge>
                                 </div>
-                                <div className="flex items-center gap-8 text-sm">
-                                    <div className="text-center">
-                                        <div className="text-gray-500 dark:text-gray-500">CTR</div>
-                                        <div className="font-medium">{creative.ctr}</div>
-                                    </div>
-                                    <div className="text-center">
-                                        <div className="text-gray-500 dark:text-gray-500">Conv Rate</div>
-                                        <div className="font-medium">{creative.convRate}</div>
-                                    </div>
-                                    <div className="text-center">
-                                        <div className="text-gray-500 dark:text-gray-500">Performance</div>
-                                        <ProgressCircle
-                                            radius={20}
-                                            strokeWidth={3}
-                                            value={parseFloat(creative.ctr) * 8}
-                                            variant={parseFloat(creative.ctr) > 8 ? "success" : "warning"}
-                                        />
-                                    </div>
+                                <p className="text-sm text-gray-500 mt-1">34 active assets</p>
+                            </div>
+                            <div className="flex items-center gap-8 text-sm">
+                                <div className="text-center">
+                                    <div className="text-gray-500 dark:text-gray-500">CTR</div>
+                                    <div className="font-medium">12.4%</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-gray-500 dark:text-gray-500">Conv Rate</div>
+                                    <div className="font-medium">8.9%</div>
                                 </div>
                             </div>
-                        ))}
+                        </div>
+                        <div className="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
+                            <div className="flex-1">
+                                <div className="flex items-center gap-3">
+                                    <h4 className="font-medium text-gray-900 dark:text-gray-50">Shopping Images</h4>
+                                    <Badge variant="success">High Performing</Badge>
+                                </div>
+                                <p className="text-sm text-gray-500 mt-1">12 active assets</p>
+                            </div>
+                            <div className="flex items-center gap-8 text-sm">
+                                <div className="text-center">
+                                    <div className="text-gray-500 dark:text-gray-500">CTR</div>
+                                    <div className="font-medium">8.3%</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-gray-500 dark:text-gray-500">Conv Rate</div>
+                                    <div className="font-medium">12.1%</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
+                            <div className="flex-1">
+                                <div className="flex items-center gap-3">
+                                    <h4 className="font-medium text-gray-900 dark:text-gray-50">Video Assets</h4>
+                                    <Badge variant="neutral">Active</Badge>
+                                </div>
+                                <p className="text-sm text-gray-500 mt-1">15 active assets</p>
+                            </div>
+                            <div className="flex items-center gap-8 text-sm">
+                                <div className="text-center">
+                                    <div className="text-gray-500 dark:text-gray-500">CTR</div>
+                                    <div className="font-medium">9.1%</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-gray-500 dark:text-gray-500">Conv Rate</div>
+                                    <div className="font-medium">7.8%</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </Card>
             </div>
@@ -169,38 +151,38 @@ export default function CreativesDashboard() {
             {/* Recent AI Generations */}
             <div className="mt-8">
                 <Card>
-                    <div className="mb-6">
-                        <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">
-                            Recent AI Creative Generations
-                        </h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-500">
-                            Latest AI-generated creative assets and their performance
-                        </p>
-                    </div>
+                    <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50 mb-4">
+                        Recent AI Creative Generations
+                    </h3>
+                    <p className="text-gray-500 dark:text-gray-500 mb-6">
+                        Latest AI-generated creative assets and their performance
+                    </p>
 
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                        {[
-                            { title: "Holiday Sale Headlines", type: "RSA Headlines", generated: "2h ago", status: "Testing" },
-                            { title: "Product Display Banners", type: "Display Images", generated: "4h ago", status: "Live" },
-                            { title: "Video Ad Scripts", type: "Video Copy", generated: "6h ago", status: "Approved" },
-                            { title: "Mobile App Promos", type: "App Install Ads", generated: "8h ago", status: "Live" },
-                            { title: "Local Business Ads", type: "Local Campaigns", generated: "1d ago", status: "Live" },
-                            { title: "Seasonal Descriptions", type: "Product Descriptions", generated: "1d ago", status: "Testing" },
-                        ].map((item, idx) => (
-                            <div key={idx} className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
-                                <div className="flex items-start justify-between mb-2">
-                                    <h4 className="font-medium text-gray-900 dark:text-gray-50">{item.title}</h4>
-                                    <Badge variant={
-                                        item.status === "Live" ? "success" :
-                                            item.status === "Testing" ? "warning" : "neutral"
-                                    }>
-                                        {item.status}
-                                    </Badge>
-                                </div>
-                                <p className="text-sm text-gray-500 mb-2">{item.type}</p>
-                                <p className="text-xs text-gray-400">Generated {item.generated}</p>
+                        <div className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
+                            <div className="flex items-start justify-between mb-2">
+                                <h4 className="font-medium text-gray-900 dark:text-gray-50">Holiday Sale Headlines</h4>
+                                <Badge variant="warning">Testing</Badge>
                             </div>
-                        ))}
+                            <p className="text-sm text-gray-500 mb-2">RSA Headlines</p>
+                            <p className="text-xs text-gray-400">Generated 2h ago</p>
+                        </div>
+                        <div className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
+                            <div className="flex items-start justify-between mb-2">
+                                <h4 className="font-medium text-gray-900 dark:text-gray-50">Product Display Banners</h4>
+                                <Badge variant="success">Live</Badge>
+                            </div>
+                            <p className="text-sm text-gray-500 mb-2">Display Images</p>
+                            <p className="text-xs text-gray-400">Generated 4h ago</p>
+                        </div>
+                        <div className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
+                            <div className="flex items-start justify-between mb-2">
+                                <h4 className="font-medium text-gray-900 dark:text-gray-50">Video Ad Scripts</h4>
+                                <Badge variant="neutral">Approved</Badge>
+                            </div>
+                            <p className="text-sm text-gray-500 mb-2">Video Copy</p>
+                            <p className="text-xs text-gray-400">Generated 6h ago</p>
+                        </div>
                     </div>
                 </Card>
             </div>

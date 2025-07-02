@@ -1,8 +1,6 @@
 import { Badge } from "@/components/Badge"
-import { Button } from "@/components/Button"
 import { Card } from "@/components/Card"
 import { Divider } from "@/components/Divider"
-import { ProgressCircle } from "@/components/ProgressCircle"
 
 export default function OptimizationDashboard() {
     return (
@@ -15,14 +13,6 @@ export default function OptimizationDashboard() {
                     <p className="text-gray-500 sm:text-sm/6 dark:text-gray-500">
                         AI-powered optimization recommendations and automated performance enhancements
                     </p>
-                </div>
-                <div className="flex gap-2">
-                    <Button variant="secondary" className="flex items-center gap-2 text-base sm:text-sm">
-                        Run Audit
-                    </Button>
-                    <Button className="flex items-center gap-2 text-base sm:text-sm">
-                        Apply All
-                    </Button>
                 </div>
             </div>
             <Divider />
@@ -39,12 +29,9 @@ export default function OptimizationDashboard() {
                                 Overall performance and optimization potential
                             </p>
                         </div>
-                        <div className="flex items-center gap-6">
-                            <div className="text-center">
-                                <div className="text-3xl font-bold text-gray-900 dark:text-gray-50">8.7</div>
-                                <div className="text-sm text-gray-500">out of 10</div>
-                            </div>
-                            <ProgressCircle value={87} radius={60} strokeWidth={8} variant="success" />
+                        <div className="text-center">
+                            <div className="text-6xl font-bold text-gray-900 dark:text-gray-50">8.7</div>
+                            <div className="text-sm text-gray-500">out of 10</div>
                         </div>
                     </div>
                     <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -67,79 +54,56 @@ export default function OptimizationDashboard() {
             {/* Top Recommendations */}
             <div className="mt-8">
                 <Card>
-                    <div className="mb-6">
-                        <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50">
-                            Priority Optimization Recommendations
-                        </h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-500">
-                            AI-identified opportunities ranked by impact potential
-                        </p>
-                    </div>
+                    <h3 className="text-lg font-medium text-gray-900 dark:text-gray-50 mb-4">
+                        Priority Optimization Recommendations
+                    </h3>
+                    <p className="text-gray-500 dark:text-gray-500 mb-6">
+                        AI-identified opportunities ranked by impact potential
+                    </p>
 
                     <div className="space-y-4">
-                        {[
-                            {
-                                title: "Expand high-performing keywords",
-                                impact: "High",
-                                saving: "$450/month",
-                                description: "Add 15 related keywords with 8.2% avg CTR",
-                                category: "Keywords"
-                            },
-                            {
-                                title: "Optimize bidding strategy",
-                                impact: "High",
-                                saving: "$680/month",
-                                description: "Switch to Target CPA for 3 campaigns showing 23% higher conv rate potential",
-                                category: "Bidding"
-                            },
-                            {
-                                title: "Remove underperforming ads",
-                                impact: "Medium",
-                                saving: "$290/month",
-                                description: "Pause 8 ads with <2% CTR and no conversions in 30 days",
-                                category: "Creatives"
-                            },
-                            {
-                                title: "Adjust audience targeting",
-                                impact: "Medium",
-                                saving: "$340/month",
-                                description: "Exclude 4 low-converting demographics, focus on high-value segments",
-                                category: "Audiences"
-                            },
-                            {
-                                title: "Update ad extensions",
-                                impact: "Low",
-                                saving: "$120/month",
-                                description: "Add sitelinks and callouts to improve ad real estate and CTR",
-                                category: "Extensions"
-                            },
-                        ].map((rec, idx) => (
-                            <div key={idx} className="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
-                                <div className="flex-1">
-                                    <div className="flex items-center gap-3 mb-2">
-                                        <h4 className="font-medium text-gray-900 dark:text-gray-50">{rec.title}</h4>
-                                        <Badge variant={
-                                            rec.impact === "High" ? "error" :
-                                                rec.impact === "Medium" ? "warning" : "neutral"
-                                        }>
-                                            {rec.impact} Impact
-                                        </Badge>
-                                        <Badge variant="neutral">{rec.category}</Badge>
-                                    </div>
-                                    <p className="text-sm text-gray-500">{rec.description}</p>
+                        <div className="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
+                            <div className="flex-1">
+                                <div className="flex items-center gap-3 mb-2">
+                                    <h4 className="font-medium text-gray-900 dark:text-gray-50">Expand high-performing keywords</h4>
+                                    <Badge variant="error">High Impact</Badge>
+                                    <Badge variant="neutral">Keywords</Badge>
                                 </div>
-                                <div className="flex items-center gap-4">
-                                    <div className="text-right">
-                                        <div className="font-medium text-gray-900 dark:text-gray-50">{rec.saving}</div>
-                                        <div className="text-sm text-gray-500">potential saving</div>
-                                    </div>
-                                    <div className="flex gap-2">
-                                        <Button size="sm" variant="ghost">Preview</Button>
-                                        <Button size="sm">Apply</Button>
-                                    </div>
-                                </div>
+                                <p className="text-sm text-gray-500">Add 15 related keywords with 8.2% avg CTR</p>
                             </div>
-                        ))}
+                            <div className="text-right">
+                                <div className="font-medium text-gray-900 dark:text-gray-50">$450/month</div>
+                                <div className="text-sm text-gray-500">potential saving</div>
+                            </div>
+                        </div>
+                        <div className="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
+                            <div className="flex-1">
+                                <div className="flex items-center gap-3 mb-2">
+                                    <h4 className="font-medium text-gray-900 dark:text-gray-50">Optimize bidding strategy</h4>
+                                    <Badge variant="error">High Impact</Badge>
+                                    <Badge variant="neutral">Bidding</Badge>
+                                </div>
+                                <p className="text-sm text-gray-500">Switch to Target CPA for 3 campaigns showing 23% higher conv rate potential</p>
+                            </div>
+                            <div className="text-right">
+                                <div className="font-medium text-gray-900 dark:text-gray-50">$680/month</div>
+                                <div className="text-sm text-gray-500">potential saving</div>
+                            </div>
+                        </div>
+                        <div className="flex items-center justify-between p-4 border border-gray-200 dark:border-gray-800 rounded-lg">
+                            <div className="flex-1">
+                                <div className="flex items-center gap-3 mb-2">
+                                    <h4 className="font-medium text-gray-900 dark:text-gray-50">Remove underperforming ads</h4>
+                                    <Badge variant="warning">Medium Impact</Badge>
+                                    <Badge variant="neutral">Creatives</Badge>
+                                </div>
+                                <p className="text-sm text-gray-500">Pause 8 ads with &lt;2% CTR and no conversions in 30 days</p>
+                            </div>
+                            <div className="text-right">
+                                <div className="font-medium text-gray-900 dark:text-gray-50">$290/month</div>
+                                <div className="text-sm text-gray-500">potential saving</div>
+                            </div>
+                        </div>
                     </div>
                 </Card>
             </div>
@@ -151,33 +115,46 @@ export default function OptimizationDashboard() {
                         Campaign Health Check
                     </h3>
                     <div className="space-y-4">
-                        {[
-                            { metric: "Quality Score", score: 8.4, status: "Good", trend: "+0.3" },
-                            { metric: "Ad Relevance", score: 7.9, status: "Above Average", trend: "+0.1" },
-                            { metric: "Landing Page Experience", score: 6.2, status: "Needs Work", trend: "-0.2" },
-                            { metric: "Expected CTR", score: 9.1, status: "Excellent", trend: "+0.5" },
-                        ].map((item, idx) => (
-                            <div key={idx} className="flex items-center justify-between">
-                                <div>
-                                    <div className="font-medium text-gray-900 dark:text-gray-50">{item.metric}</div>
-                                    <div className="text-sm text-gray-500">{item.status}</div>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <div className="text-right">
-                                        <div className="font-medium">{item.score}/10</div>
-                                        <div className={`text-sm ${item.trend.startsWith('+') ? 'text-green-600' : 'text-red-600'}`}>
-                                            {item.trend}
-                                        </div>
-                                    </div>
-                                    <ProgressCircle
-                                        radius={20}
-                                        strokeWidth={3}
-                                        value={item.score * 10}
-                                        variant={item.score > 8 ? "success" : item.score > 6 ? "warning" : "error"}
-                                    />
-                                </div>
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <div className="font-medium text-gray-900 dark:text-gray-50">Quality Score</div>
+                                <div className="text-sm text-gray-500">Good</div>
                             </div>
-                        ))}
+                            <div className="text-right">
+                                <div className="font-medium">8.4/10</div>
+                                <div className="text-sm text-green-600">+0.3</div>
+                            </div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <div className="font-medium text-gray-900 dark:text-gray-50">Ad Relevance</div>
+                                <div className="text-sm text-gray-500">Above Average</div>
+                            </div>
+                            <div className="text-right">
+                                <div className="font-medium">7.9/10</div>
+                                <div className="text-sm text-green-600">+0.1</div>
+                            </div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <div className="font-medium text-gray-900 dark:text-gray-50">Landing Page Experience</div>
+                                <div className="text-sm text-gray-500">Needs Work</div>
+                            </div>
+                            <div className="text-right">
+                                <div className="font-medium">6.2/10</div>
+                                <div className="text-sm text-red-600">-0.2</div>
+                            </div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <div className="font-medium text-gray-900 dark:text-gray-50">Expected CTR</div>
+                                <div className="text-sm text-gray-500">Excellent</div>
+                            </div>
+                            <div className="text-right">
+                                <div className="font-medium">9.1/10</div>
+                                <div className="text-sm text-green-600">+0.5</div>
+                            </div>
+                        </div>
                     </div>
                 </Card>
 
@@ -186,21 +163,34 @@ export default function OptimizationDashboard() {
                         Automated Optimizations Today
                     </h3>
                     <div className="space-y-3">
-                        {[
-                            { action: "Increased bids for high-converting keywords", time: "2 hours ago", impact: "+$340 est. revenue" },
-                            { action: "Paused underperforming ad variants", time: "4 hours ago", impact: "-$85 wasted spend" },
-                            { action: "Added negative keywords", time: "6 hours ago", impact: "+2.1% CTR improvement" },
-                            { action: "Adjusted audience targeting", time: "8 hours ago", impact: "+12% conversion rate" },
-                            { action: "Updated ad schedules", time: "12 hours ago", impact: "+5% impression share" },
-                        ].map((opt, idx) => (
-                            <div key={idx} className="flex items-start justify-between py-2">
-                                <div className="flex-1">
-                                    <div className="text-sm font-medium text-gray-900 dark:text-gray-50">{opt.action}</div>
-                                    <div className="text-xs text-gray-500">{opt.time}</div>
-                                </div>
-                                <Badge variant="success" className="text-xs">{opt.impact}</Badge>
+                        <div className="flex items-start justify-between py-2">
+                            <div className="flex-1">
+                                <div className="text-sm font-medium text-gray-900 dark:text-gray-50">Increased bids for high-converting keywords</div>
+                                <div className="text-xs text-gray-500">2 hours ago</div>
                             </div>
-                        ))}
+                            <Badge variant="success" className="text-xs">+$340 est. revenue</Badge>
+                        </div>
+                        <div className="flex items-start justify-between py-2">
+                            <div className="flex-1">
+                                <div className="text-sm font-medium text-gray-900 dark:text-gray-50">Paused underperforming ad variants</div>
+                                <div className="text-xs text-gray-500">4 hours ago</div>
+                            </div>
+                            <Badge variant="success" className="text-xs">-$85 wasted spend</Badge>
+                        </div>
+                        <div className="flex items-start justify-between py-2">
+                            <div className="flex-1">
+                                <div className="text-sm font-medium text-gray-900 dark:text-gray-50">Added negative keywords</div>
+                                <div className="text-xs text-gray-500">6 hours ago</div>
+                            </div>
+                            <Badge variant="success" className="text-xs">+2.1% CTR improvement</Badge>
+                        </div>
+                        <div className="flex items-start justify-between py-2">
+                            <div className="flex-1">
+                                <div className="text-sm font-medium text-gray-900 dark:text-gray-50">Adjusted audience targeting</div>
+                                <div className="text-xs text-gray-500">8 hours ago</div>
+                            </div>
+                            <Badge variant="success" className="text-xs">+12% conversion rate</Badge>
+                        </div>
                     </div>
                 </Card>
             </div>
